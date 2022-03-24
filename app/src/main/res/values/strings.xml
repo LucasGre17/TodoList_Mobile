@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TodoList</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Actualiser</string>
+    <string name="title_activity_main">TP Mobilité-Cloud / ICONE IID</string>
+
+</resources>
