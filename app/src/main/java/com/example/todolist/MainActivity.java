@@ -21,8 +21,9 @@ public class MainActivity extends Activity {
 	public ArrayAdapter<Task> adapter;						// Adapter qui fait la liaison entre la listView et la liste de tache (en memoire)
 	public EditText editText;								// Champs qui permet la modification d'une tache
 	public Task task = null;								// Tache selectionne dans la vue
-	public String urlAppli = "http://10.0.2.2:9000/api/";	// OU http://10.0.2.2:9000/api/ => adresse local du web service de l'appli web play!"
-	
+	//public String urlAppli = "http://10.0.2.2:9000/api/";	// OU http://10.0.2.2:9000/api/ => adresse local du web service de l'appli web play!"
+	public String urlAppli = "https://app-cebeae2f-bbf5-48b0-8a0e-3473c05b2ab6.cleverapps.io/api/";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {		// Execution au lancement de l'application
         super.onCreate(savedInstanceState);
@@ -50,7 +51,7 @@ public class MainActivity extends Activity {
 				alertDialog.setPositiveButton("Enregistrer", new DialogInterface.OnClickListener() {	// Ajoute un bouton 'enregistrer' a la Popup
 					public void onClick(DialogInterface dialog, int which) {							// Methode appele quand on click sur le bouton 'enregistrer'
 						task.setTitle(editText.getText().toString());									// 
-						new EditTask(getApplicationContext(), urlAppli).execute(task);					// Appel asynchrone => requete HTTP qui modifie la tache selectionne sur notre appli via le web servive
+						new EditTask(getApplicationContext(), urlAppli, adapter).execute(task);					// Appel asynchrone => requete HTTP qui modifie la tache selectionne sur notre appli via le web servive
 					}
 				});
 

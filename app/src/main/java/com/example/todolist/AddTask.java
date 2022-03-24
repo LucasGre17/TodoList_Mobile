@@ -66,9 +66,6 @@ public class AddTask extends AsyncTask<String, Integer, Task> {
 	public Task addTask(String title) {
 		Task task = new Task(title);
 
-		/**
-		 * A COMPLETER
-		 */
 		Log.d("TEST nom : ", task.getTitle());
 
 		Retrofit retrofit = new Retrofit.Builder()
@@ -77,14 +74,16 @@ public class AddTask extends AsyncTask<String, Integer, Task> {
 				.build();
 
 		ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-		Call<Task> call = apiInterface.postTask(task);
-		call.enqueue(new Callback<Task>() {
+		Call<String> call = apiInterface.postTask(task.getTitle());
+		call.enqueue(new Callback<String>() {
 			@Override
-			public void onResponse(Call<Task> call, Response<Task> response) {
-			}
+			public void onResponse(Call<String> call, Response<String> response) {
 
+			}
 			@Override
-			public void onFailure(Call<Task> call, Throwable t) {
+			public void onFailure(Call<String> call, Throwable t) {
+				DownloadTaskData downloadTaskData = new DownloadTaskData(context, list, adapter, url);	//Appel asynchrone pour recuperer les taches depuis l'application en ligne
+				downloadTaskData.execute();
 			}
 		});
 
